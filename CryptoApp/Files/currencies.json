@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Bitcoin",
+        "unit": "BTC",
+        "value": "1.0",
+        "image": "bitcoin"
+    },
+    {
+        "name": "Ether",
+        "unit": "ETH",
+        "value": "13.624",
+        "image": "Ethereum-Symbol"
+    },
+    {
+        "name": "Litecoin",
+        "unit": "LTC",
+        "value": "262.406",
+        "image": "litecoin-logo"
+    },
+    {
+        "name": "Bitcoin Cash",
+        "unit": "BCH",
+        "value": "102.149",
+        "image": "binance"
+    },
+    {
+        "name": "Binance Coin",
+        "unit": "BNB",
+        "value": "100.125",
+        "image": "binance-coin-bnb-logo-freelogovectors.net_"
+    },
+    {
+        "name": "EOS",
+        "unit": "EOS",
+        "value": "13734.295",
+        "image": "eos-eos-logo"
+    },
+    {
+        "name": "XRP",
+        "unit": "XRP",
+        "value": "55451.22",
+        "image": "xrp-text-mark-black"
+    },
+    {
+        "name": "Lumens",
+        "unit": "XLM",
+        "value": "171689.554",
+        "image": "stellar-xlm9125"
+    },
+    {
+        "name": "Chainlink",
+        "unit": "LINK",
+        "value": "2054.055",
+        "image": "chainlink"
+    },
+    {
+        "name": "Polkadot",
+        "unit": "DOT",
+        "value": "1387.613",
+        "image": "polkadot-new-dot-logo"
+    },
+]

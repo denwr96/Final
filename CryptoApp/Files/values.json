@@ -1,0 +1,62 @@
+[
+    {
+        "name": "US Dollar",
+              "unit": "USD",
+              "value": "58726.088",
+              "image": "us"
+    },
+    {
+        "name": "United Arab Emirates Dirham",
+              "unit": "AED",
+              "value": "215706.795",
+              "image": "ae"
+    },
+    {
+        "name": "Argentine Peso",
+              "unit": "ARS",
+              "value": "5896645.422",
+              "image": "ar"
+    },
+    {
+        "name": "Australian Dollar",
+              "unit": "AUD",
+              "value": "80774.798",
+              "image": "au"
+    },
+    {
+        "name": "Chinese Yuan",
+              "unit": "CLP",
+              "value": "374801.641",
+              "image": "cn"
+    },
+    {
+        "name": "Danish Krone",
+              "unit": "DKK",
+              "value": "387171.234",
+              "image": "dk"
+    },
+    {
+        "name": "Euro",
+              "unit": "EUR",
+              "value": "52062.086",
+              "image": "eu"
+    },
+    {
+        "name": "British Pound Sterling",
+              "unit": "GBP",
+              "value": "43677.352",
+              "image": "gb"
+    },
+    {
+        "name": "Japanese Yen",
+              "unit": "JPY",
+              "value": "6703615.284",
+              "image": "jp"
+    },
+    {
+        "name": "Russian Ruble",
+              "unit": "RUB",
+              "value": "4381935.171",
+              "image": "ru"
+    },
+]
