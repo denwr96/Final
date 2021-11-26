@@ -1,3 +1,14 @@
+/*
+   CryptoViewController.swift
+   CryptoApp
+ 
+   Created by Denis Lobach on 24/11/2021.
+ 
+ */
+
+/*
+  NewsItem model
+ */
 
 import Foundation
 

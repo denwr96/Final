@@ -1,11 +1,15 @@
-// Tether","price":1.0047723655907388
-//"Tether","price":1.0033526573070628
-//"Tether","price":1.0006768986324746
+/*
+   CryptoViewController.swift
+   CryptoApp
+ 
+   Created by Denis Lobach on 24/11/2021.
+ 
+ */
 
 import UIKit
 import CoreData
 
-   @main
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 

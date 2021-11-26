@@ -1,15 +1,17 @@
-//
-//  BlogDetailViewController.swift
-//  NewsApiOrg
-//
-//  Created by deniss.lobacs on 23/11/2021.
-//
+/*
+   CryptoViewController.swift
+   CryptoApp
+ 
+   Created by Denis Lobach on 24/11/2021.
+ 
+ */
 
 import UIKit
 import SDWebImage
 
 class BlogDetailViewController: UIViewController {
 
+    var blog: Blog!
     var webUrlString = String()
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -17,7 +19,7 @@ class BlogDetailViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    var blog: Blog!
+    
     
     override func viewDidLoad() {
         UINavigationBar.appearance().tintColor = .purple
@@ -41,7 +43,7 @@ class BlogDetailViewController: UIViewController {
         let destinationVC: WebViewController = segue.destination as! WebViewController
         
         destinationVC.urlString = webUrlString
-        print("DVC url: ", webUrlString)
+       // print("DVC url: ", webUrlString)
        // destinationVC.urlString = blog[indexP]
     }
 

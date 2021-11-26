@@ -1,3 +1,11 @@
+/*
+   CryptoViewController.swift
+   CryptoApp
+ 
+   Created by Denis Lobach on 24/11/2021.
+ 
+ */
+
 import UIKit
 import SDWebImage
 
@@ -7,7 +15,10 @@ class NewsFeedViewController: UIViewController {
 
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
-   
+    @IBAction func infoButton(_ sender: Any) {
+        basicAlert(title: "About App", message: "In this application you will find a lot of information about cryptocurrency, such as: news, startups and cryptocurrency prices in real time. Enjoy!")
+    }
+    
     
     override func viewDidLoad() {
         UINavigationBar.appearance().tintColor = .purple
@@ -15,9 +26,10 @@ class NewsFeedViewController: UIViewController {
         handleGetData()
     }
     
-    @IBAction func infoButton(_ sender: Any) {
-        basicAlert(title: "About App", message: "In this application you will find a lot of information about cryptocurrency, such as: news, startups and cryptocurrency prices in real time. Enjoy!")
-    }
+    /*
+      Activity indicator function
+     */
+    
     func activityIndicator(animated: Bool){
         DispatchQueue.main.async {
             if animated{
@@ -30,6 +42,11 @@ class NewsFeedViewController: UIViewController {
         }
     }
 
+    /*
+       Getting datas from API function
+     
+     */
+    
     func handleGetData(){
         activityIndicator(animated: true)
         let jsonUrl = "https://newsapi.org/v2/everything?q=crypto&from=2021-11-23&to=2021-11-23&sortBy=popularity&apiKey=5594193b86624fd1a382fa3c17a07d0b"
@@ -95,6 +112,11 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
         return 120
     }
     
+    /*
+       Transition to DetailViewController for News
+     
+     */
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storybord = UIStoryboard(name: "Main", bundle: Bundle.main)
         guard let vc = storybord.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {return}
@@ -103,8 +125,7 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
         vc.titleString = item.title
         vc.webUrlString = item.url
         vc.contentString = item.description
-        
-//        present(vc, animated: true, completion: nil)
+
         navigationController?.pushViewController(vc, animated: true)
     }
     

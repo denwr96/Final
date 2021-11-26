@@ -1,30 +1,38 @@
-//
-//  CryptoViewController.swift
-//  NewsApiOrg
-//
-//  Created by deniss.lobacs on 24/11/2021.
-//
+/*
+   CryptoViewController.swift
+   CryptoApp
+ 
+   Created by Denis Lobach on 24/11/2021.
+ 
+ */
 
 import UIKit
 
 class CryptoViewController: UIViewController {
     
-    //let cryptoValue = Crypto()
+    var crypto: Crypto? = nil
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var table: UITableView!
+    
+    /*
+      Refreshing view button
+     */
+    
     @IBAction func refreshButton(_ sender: Any) {
         viewDidLoad()
         table.reloadData()
     }
-  //  let networkService = CryptoNetworkService()
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
-    var crypto: Crypto? = nil
-    @IBOutlet weak var table: UITableView!
+
+    /*
+     Requesting data from API function
+     */
     
     func request(urlString: String, completion: @escaping (Result<Crypto, Error>) -> Void) {
         guard let url = URL(string: urlString) else {return}
         URLSession.shared.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    print("Some error")
+                    print("Request error", error)
                     completion(.failure(error))
                     return
                 }
@@ -44,8 +52,8 @@ class CryptoViewController: UIViewController {
     
     override func viewDidLoad() {
         UINavigationBar.appearance().tintColor = .purple
-        super.viewDidLoad()
         self.table.allowsSelection = false
+        super.viewDidLoad()
         let urlString = "https://cryptingup.com/api/assets?size=10"
         activityIndicator(animated: true)
         request(urlString: urlString) { [weak self] (result) in
@@ -75,10 +83,11 @@ class CryptoViewController: UIViewController {
 }
 
 extension CryptoViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return crypto?.assets.count ?? 0
     }
-    //----------------------------------------------
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cryptoCell", for: indexPath) as? CryptoTableViewCell else {return UITableViewCell()}
         

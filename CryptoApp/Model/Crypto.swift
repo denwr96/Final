@@ -1,11 +1,16 @@
-//
-//  Crypto.swift
-//  NewsApiOrg
-//
-//  Created by deniss.lobacs on 24/11/2021.
-//
+/*
+   CryptoViewController.swift
+   CryptoApp
+ 
+   Created by Denis Lobach on 24/11/2021.
+ 
+ */
 
 import Foundation
+
+/*
+  Cryptocurrency model for MarketCap
+ */
 
 struct Crypto: Decodable {
     var assets: [CryptoValue]

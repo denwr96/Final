@@ -1,9 +1,10 @@
-//
-//  SceneDelegate.swift
-//  NewsApiOrg
-//
-//  Created by Arkadijs Makarenko on 19/11/2021.
-//
+/*
+   CryptoViewController.swift
+   CryptoApp
+ 
+   Created by Denis Lobach on 24/11/2021.
+ 
+ */
 
 import UIKit
 

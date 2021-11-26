@@ -1,24 +1,30 @@
+/*
+   CryptoViewController.swift
+   CryptoApp
+ 
+   Created by Denis Lobach on 24/11/2021.
+ 
+ */
+
 import UIKit
 import SDWebImage
 import CoreData
-// -----------------------------------------------------------
+
 class DetailViewController: UIViewController {
+    
+    @IBOutlet weak var savedButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var newsImageView: UIImageView!
+    @IBOutlet weak var contentTextView: UILabel!
     
     var savedItems = [Items]()
     var context: NSManagedObjectContext?
-    // var newsFeedViewController = SavedTableViewController()
-    @IBOutlet weak var savedButton: UIButton!
-    //var context: NSManagedObjectContext?
     
     var webUrlString = String()
     var titleString = String()
     var contentString = String()
     var newsImage = String()
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var newsImageView: UIImageView!
-    // @IBOutlet weak var contentTextView: UITextView!
-    @IBOutlet weak var contentTextView: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +40,13 @@ class DetailViewController: UIViewController {
         for item in savedItems {
             if item.newsTitle == titleString {
                 savedButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-                // savedButton.tintColor = .black
             }
         }
     }
+    
+    /*
+      Saving datas to CoreData function
+     */
     
     func saveData(){
         do{
@@ -48,6 +57,10 @@ class DetailViewController: UIViewController {
             print(error.localizedDescription)
         }
     }
+    
+    /*
+      Loading datas from CoreData
+     */
     
     func loadData(){
         let request: NSFetchRequest<Items> = Items.fetchRequest()
@@ -60,6 +73,10 @@ class DetailViewController: UIViewController {
         
     }
     
+    /*
+      Saving article to Favourite list button
+     */
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         
         for item in savedItems {
@@ -68,10 +85,10 @@ class DetailViewController: UIViewController {
                 return
             }
         }
-        
-        // print("saved items: ", savedItems)
-        
-        
+
+        /*
+         Preparing new item for saving it in CoreData
+         */
         
         let newItem = Items(context: self.context!)
         newItem.newsTitle = titleString

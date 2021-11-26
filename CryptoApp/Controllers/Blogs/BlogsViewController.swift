@@ -1,17 +1,21 @@
-//
-//  NewViewController.swift
-//  NewsApiOrg
-//
-//  Created by deniss.lobacs on 23/11/2021.
-//
+/*
+   CryptoViewController.swift
+   CryptoApp
+ 
+   Created by Denis Lobach on 24/11/2021.
+ 
+ */
 
 import UIKit
 
 class BlogsViewController: UIViewController {
     
-   // let networkService = NetworkService()
     var searchResponse: SearchResponse? = nil
-    private var filtred = [Blog]()
+    
+    @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
+    private var filtred = [Blog]() // filtred items
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else {return false}
@@ -21,10 +25,10 @@ class BlogsViewController: UIViewController {
     private var isFiltering: Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
-    
-    @IBOutlet weak var table: UITableView!
- 
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+
+    /*
+     Requesting data from API function
+     */
     
     func request(urlString: String, completion: @escaping (Result<SearchResponse, Error>) -> Void) {
         guard let url = URL(string: urlString) else {return}
@@ -52,9 +56,7 @@ class BlogsViewController: UIViewController {
     override func viewDidLoad() {
         UINavigationBar.appearance().tintColor = .purple
         super.viewDidLoad()
-
         setupSearchBar()
-        
         
         let urlString = "https://inshortsapi.vercel.app/news?category=startup"
         activityIndicator(animated: true)
@@ -137,32 +139,14 @@ extension BlogsViewController: UITableViewDelegate, UITableViewDataSource {
             
             let blog: Blog
             
-//            switch isFiltering {
-//            case true:
-//                blog = filtred[indexPath.row]
-//                let detailVC = segue.destination as! BlogDetailViewController
-//                let item = searchResponse?.data[indexPath.row]
-//                detailVC.blog = blog
-//                detailVC.webUrlString = item!.url
-//            case false:
-//                blog = (searchResponse?.data[indexPath.row])!
-//                let detailVC = segue.destination as! BlogDetailViewController
-//                let item = searchResponse?.data[indexPath.row]
-//                detailVC.blog = blog
-//                detailVC.webUrlString = item!.url
-//            }
-            
             if isFiltering {
                 blog = filtred[indexPath.row]
             } else {
                 blog = (searchResponse?.data[indexPath.row])!
             }
             let detailVC = segue.destination as! BlogDetailViewController
-           // let item = searchResponse?.data[indexPath.row]
             detailVC.blog = blog
             detailVC.webUrlString = blog.url
-            //print("VC url: ", item!.readMoreUrl)
-            // FIX THIS!!!
         }
     }
     
@@ -181,14 +165,5 @@ extension BlogsViewController: UISearchResultsUpdating {
         
         table.reloadData()
         
-    }
-    
-   
-    
+    }   
 }
-
-//extension BlogsViewController: UISearchBarDelegate {
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        print(searchText)
-//    }
-//}

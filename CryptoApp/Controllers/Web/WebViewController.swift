@@ -1,6 +1,12 @@
-//
-//  WebViewController.swift
-//  NewsApiOrg
+/*
+   CryptoViewController.swift
+   CryptoApp
+ 
+   Created by Denis Lobach on 24/11/2021.
+ 
+ */
+
+
 import UIKit
 import WebKit
 

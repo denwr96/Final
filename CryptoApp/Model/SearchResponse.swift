@@ -1,10 +1,14 @@
-//
-//  SearchResponse.swift
-//  CryptoApp
-//
-//  Created by deniss.lobacs on 25/11/2021.
-//  Copyright © 2021 bootcamp. All rights reserved.
-//
+/*
+   CryptoViewController.swift
+   CryptoApp
+ 
+   Created by Denis Lobach on 24/11/2021.
+ 
+ */
+
+/*
+  Blog model
+ */
 
 import Foundation
 

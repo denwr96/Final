@@ -1,20 +1,22 @@
-//
-//  TweetsViewController.swift
-//  NewsApiOrg
-//
-//  Created by deniss.lobacs on 21/11/2021.
-//
+/*
+ CryptoViewController.swift
+ CryptoApp
+ 
+ Created by Denis Lobach on 24/11/2021.
+ 
+ */
 
 import UIKit
 
 class CurrenciesViewController: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
     
     var currencies: [Currency] = []
     var values: [Values] = []
     
     var currentTableView = 0
-    var a: String!
+    //var a: String!
     
     @IBAction func infoButton(_ sender: Any) {
         basicAlert(title: "Attention", message: "Last Update Date: 2021-11-24 12:35:30")
@@ -22,58 +24,56 @@ class CurrenciesViewController: UIViewController {
     @IBOutlet weak var segmendetControl: UISegmentedControl!
     @IBAction func indexChanged(_ sender: Any) {
         switch(segmendetControl.selectedSegmentIndex) {
-           case 0:
+        case 0:
             fetchVideoData(file: "currencies")
-               tableView.reloadData()
-               break
-
-           case 1:
+            tableView.reloadData()
+            break
+            
+        case 1:
             fetchVideoData(file: "values")
-               tableView.reloadData()
-               break
-           default:
-               break
-
+            tableView.reloadData()
+            break
+        default:
+            break
+            
         }
     }
     
-    func fetchVideoData(file: String) {
-       guard let url = Bundle.main.url(forResource: file, withExtension: "json") else {
-           return
-       }
-
-       guard let data = try? Data(contentsOf: url) else {
-           return
-       }
-       let str = String(decoding: data, as: UTF8.self)
-       print(str)
-      // print("Data: \(data)")
-       let decoder = JSONDecoder()
-
-       do {
-           let currencies = try decoder.decode([Currency].self, from: data)
-           let values = try decoder.decode([Values].self, from: data)
-           self.currencies = currencies
-           self.values = values
-       } catch let DecodingError.dataCorrupted(context) {
-           print(context)
-       } catch let DecodingError.keyNotFound(key, context) {
-           print("Key '\(key)' not found:", context.debugDescription)
-           print("codingPath:", context.codingPath)
-       } catch let DecodingError.valueNotFound(value, context) {
-           print("Value '\(value)' not found:", context.debugDescription)
-           print("codingPath:", context.codingPath)
-       } catch let DecodingError.typeMismatch(type, context)  {
-           print("Type '\(type)' mismatch:", context.debugDescription)
-           print("codingPath:", context.codingPath)
-       } catch {
-           print("error: ", error)
-       }
-
-   }
-
     
-    @IBOutlet weak var tableView: UITableView!
+    
+    func fetchVideoData(file: String) {
+        guard let url = Bundle.main.url(forResource: file, withExtension: "json") else {
+            return
+        }
+        
+        guard let data = try? Data(contentsOf: url) else {
+            return
+        }
+
+        let decoder = JSONDecoder()
+        
+        do {
+            let currencies = try decoder.decode([Currency].self, from: data)
+            let values = try decoder.decode([Values].self, from: data)
+            self.currencies = currencies
+            self.values = values
+        } catch let DecodingError.dataCorrupted(context) {
+            print(context)
+        } catch let DecodingError.keyNotFound(key, context) {
+            print("Key '\(key)' not found:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch let DecodingError.valueNotFound(value, context) {
+            print("Value '\(value)' not found:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch let DecodingError.typeMismatch(type, context)  {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch {
+            print("error: ", error)
+        }
+        
+    }
+    
     override func viewDidLoad() {
         UINavigationBar.appearance().tintColor = .purple
         super.viewDidLoad()
@@ -94,8 +94,7 @@ extension CurrenciesViewController: UITableViewDelegate, UITableViewDataSource {
         let object = currencies[indexPath.row]
         let object2 = values[indexPath.row]
         
-        switch(segmendetControl.selectedSegmentIndex)
-        {
+        switch(segmendetControl.selectedSegmentIndex) {
         case 0:
             cell.nameLabel.text = object.name
             cell.unitLabel.text = object.unit
@@ -108,10 +107,10 @@ extension CurrenciesViewController: UITableViewDelegate, UITableViewDataSource {
             cell.valueLabel.text = object2.value
             cell.imageLabel.image = UIImage(named: object.image)
             break
-
+            
         default:
             break
-
+            
         }
         
         return cell

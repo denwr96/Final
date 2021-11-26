@@ -1,9 +1,14 @@
-//
-//  Currency.swift
-//  NewsApiOrg
-//
-//  Created by deniss.lobacs on 22/11/2021.
-//
+/*
+   CryptoViewController.swift
+   CryptoApp
+ 
+   Created by Denis Lobach on 24/11/2021.
+ 
+ */
+
+/*
+  Cryptocurrency model
+ */
 
 import Foundation
 
