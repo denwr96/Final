@@ -93,7 +93,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="News" id="Hzg-Gz-y74">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="heart" catalog="system" id="Kz8-0a-cTI">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="heart.fill" catalog="system" id="Kz8-0a-cTI">
                             <color key="tintColor" systemColor="systemPurpleColor"/>
                             <connections>
                                 <segue destination="dAB-pv-Kb7" kind="show" id="48V-31-Gkt"/>
@@ -107,6 +107,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicatorView" destination="Nvk-QJ-nrG" id="Txn-gX-p6M"/>
+                        <outlet property="goToFavouriteListButton" destination="Kz8-0a-cTI" id="bnD-v2-ibg"/>
                         <outlet property="tblView" destination="0gW-53-X88" id="olo-dK-8GO"/>
                     </connections>
                 </viewController>
@@ -956,6 +957,7 @@
         <image name="chart.bar.xaxis" catalog="system" width="128" height="98"/>
         <image name="ethereum" width="3840" height="2160"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="news" width="920" height="920"/>
         <image name="newspaper.fill" catalog="system" width="128" height="111"/>

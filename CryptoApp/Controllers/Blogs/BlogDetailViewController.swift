@@ -26,7 +26,6 @@ class BlogDetailViewController: UIViewController {
         super.viewDidLoad()
         
         if blog != nil {
-            
             titleLabel.text = blog.title!
             contentLabel.text = blog.content!
             timeLabel.text = blog.time!
@@ -37,14 +36,9 @@ class BlogDetailViewController: UIViewController {
     
 
     // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
         let destinationVC: WebViewController = segue.destination as! WebViewController
-        
         destinationVC.urlString = webUrlString
-       // print("DVC url: ", webUrlString)
-       // destinationVC.urlString = blog[indexP]
     }
-
 }

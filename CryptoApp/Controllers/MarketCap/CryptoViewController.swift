@@ -62,7 +62,7 @@ class CryptoViewController: UIViewController {
                 self?.crypto = crypto
                 self?.table.reloadData()
             case .failure(let error):
-                print("error: ", error)
+                print("Request error: ", error)
             }
            
         }
@@ -97,7 +97,7 @@ extension CryptoViewController: UITableViewDelegate, UITableViewDataSource {
         cell.assetIdLabel.text = crypto?.asset_id
         cell.nameLabel.text = crypto?.name
         cell.priceValue.text = "$ " + String(format: "%.16f", crypto!.price)
-        cell.volume24hLabel.text = "$ " + String(format: "%.4f", crypto!.volume_24h)
+        cell.volume24hLabel.text = String(format: "%.1f", crypto!.volume_24h)
         
         cell.change1hLabel.text = "$ " + String(format: "%.16f", crypto!.change_1h)
         cell.change1hLabel.textColor = crypto!.change_1h > 0 ? UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00) : UIColor.red

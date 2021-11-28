@@ -35,7 +35,7 @@ class BlogsViewController: UIViewController {
         URLSession.shared.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    print("Some error")
+                    print("Request error", error)
                     completion(.failure(error))
                     return
                 }
@@ -91,12 +91,6 @@ class BlogsViewController: UIViewController {
         definesPresentationContext = true
     }
     
-//    private func setupTableView() {
-//        table.delegate = self
-//        table.dataSource = self
-//
-//
-//    }
 
 }
 
@@ -120,7 +114,6 @@ extension BlogsViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             blog = (searchResponse?.data[indexPath.row])!
         }
-       // let blog = searchResponse?.data[indexPath.row]
         
         cell.titleLabel.text = blog.title
         cell.authorLabel.text = blog.author
@@ -153,8 +146,8 @@ extension BlogsViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension BlogsViewController: UISearchResultsUpdating {
+    
     func updateSearchResults(for searchController: UISearchController) {
-        
         filterContentForSearchText(searchController.searchBar.text!)
     }
     

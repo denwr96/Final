@@ -11,26 +11,21 @@ import UIKit
 class CurrenciesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
-    var currencies: [Currency] = []
-    var values: [Values] = []
-    
-    var currentTableView = 0
-    //var a: String!
+    @IBOutlet weak var segmendetControl: UISegmentedControl!
     
     @IBAction func infoButton(_ sender: Any) {
-        basicAlert(title: "Attention", message: "Last Update Date: 2021-11-24 12:35:30")
+        basicAlert(title: "Attention!", message: "Last Update Date: 2021-11-24 12:35:30")
     }
-    @IBOutlet weak var segmendetControl: UISegmentedControl!
+   
     @IBAction func indexChanged(_ sender: Any) {
         switch(segmendetControl.selectedSegmentIndex) {
         case 0:
-            fetchVideoData(file: "currencies")
+            fetchData(file: "currencies")
             tableView.reloadData()
             break
             
         case 1:
-            fetchVideoData(file: "values")
+            fetchData(file: "values")
             tableView.reloadData()
             break
         default:
@@ -39,9 +34,21 @@ class CurrenciesViewController: UIViewController {
         }
     }
     
+    var currencies: [Currency] = []
+    var values: [Values] = []
+    var currentTableView = 0
     
     
-    func fetchVideoData(file: String) {
+    override func viewDidLoad() {
+        UINavigationBar.appearance().tintColor = .purple
+        super.viewDidLoad()
+        self.tableView.allowsSelection = false
+        fetchData(file: "values")
+        fetchData(file: "currencies")
+    }
+
+    
+    func fetchData(file: String) {
         guard let url = Bundle.main.url(forResource: file, withExtension: "json") else {
             return
         }
@@ -73,14 +80,6 @@ class CurrenciesViewController: UIViewController {
         }
         
     }
-    
-    override func viewDidLoad() {
-        UINavigationBar.appearance().tintColor = .purple
-        super.viewDidLoad()
-        self.tableView.allowsSelection = false
-        fetchVideoData(file: "values")
-        fetchVideoData(file: "currencies")
-    }
 }
 
 extension CurrenciesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -91,21 +90,21 @@ extension CurrenciesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CurrencyTableViewCell
-        let object = currencies[indexPath.row]
-        let object2 = values[indexPath.row]
+        let currencie = currencies[indexPath.row]
+        let value = values[indexPath.row]
         
         switch(segmendetControl.selectedSegmentIndex) {
         case 0:
-            cell.nameLabel.text = object.name
-            cell.unitLabel.text = object.unit
-            cell.valueLabel.text = object.value
-            cell.imageLabel.image = UIImage(named: object.image)
+            cell.nameLabel.text = currencie.name
+            cell.unitLabel.text = currencie.unit
+            cell.valueLabel.text = currencie.value
+            cell.imageLabel.image = UIImage(named: currencie.image)
             
         case 1:
-            cell.nameLabel.text = object2.name
-            cell.unitLabel.text = object2.unit
-            cell.valueLabel.text = object2.value
-            cell.imageLabel.image = UIImage(named: object.image)
+            cell.nameLabel.text = value.name
+            cell.unitLabel.text = value.unit
+            cell.valueLabel.text = value.value
+            cell.imageLabel.image = UIImage(named: currencie.image)
             break
             
         default:

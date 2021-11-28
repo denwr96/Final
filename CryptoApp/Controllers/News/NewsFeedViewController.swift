@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import CoreData
 
 class NewsFeedViewController: UIViewController {
     
@@ -15,17 +16,47 @@ class NewsFeedViewController: UIViewController {
 
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var goToFavouriteListButton: UIBarButtonItem!
+    
     @IBAction func infoButton(_ sender: Any) {
         basicAlert(title: "About App", message: "In this application you will find a lot of information about cryptocurrency, such as: news, startups and cryptocurrency prices in real time. Enjoy!")
     }
     
     
     override func viewDidLoad() {
-        UINavigationBar.appearance().tintColor = .purple
         super.viewDidLoad()
+        UINavigationBar.appearance().tintColor = .purple
+        tblView.reloadData()
         handleGetData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        favButtonChangeColor()
+    }
+    
+    /*
+     Change button color if Favourite articles is not empty to purple (default = gray)
+     */
+    
+    func favButtonChangeColor() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        context = appDelegate.persistentContainer.viewContext
+        loadData()
+        goToFavouriteListButton.tintColor = savedItems.count > 0 ? .purple : .gray
+    }
+    
+    func loadData(){
+        let request: NSFetchRequest<Items> = Items.fetchRequest()
+        do {
+            savedItems = try (context?.fetch(request))!
+            
+        }catch{
+            fatalError("Error in retrieving Saved Items")
+        }
+    }
+
+
     /*
       Activity indicator function
      */
